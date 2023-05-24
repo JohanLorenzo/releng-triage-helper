@@ -38,8 +38,9 @@ def _fetch_bugs():
     for product_component in _PRODUCT_COMPONENTS_TO_MONITOR:
         query_params = {
             "limit": 0,
-            "include_fields": "id,summary,product,component",
+            "include_fields": "id,summary,product,component,severity",
             "resolution": "---",
+            "bug_severity": ["--", "normal", "N/A"],
         }
         query_params.update(product_component)
         req = requests.get(f"{_BMO_REST_ENDPOINT}/bug", params=query_params)
